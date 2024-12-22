@@ -1,34 +1,87 @@
+/* Wrapper for the entire carousel (gallery + buttons) */
+.carousel-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;  /* Full width of the container */
+  overflow: hidden;  /* Ensure content is clipped inside the carousel container */
+}
+
+/* Left and right buttons for carousel */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);  /* Slightly darker background */
+  color: white;
+  font-size: 2rem;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  z-index: 2;  /* Ensure buttons are above images */
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;  /* Smooth opacity and transform */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);  /* Add a subtle shadow for depth */
+}
+
+/* Hover effect to make buttons more visible */
+.carousel-button:hover {
+  opacity: 1;  /* Full opacity on hover */
+  transform: translateY(-50%) scale(1.1);  /* Slightly enlarge the button on hover */
+}
+
+/* Disabled button state */
+.carousel-button:disabled {
+  background-color: rgba(0, 0, 0, 0.3);  /* Dim the disabled buttons */
+  cursor: not-allowed;
+  opacity: 0.4;  /* Make disabled buttons more transparent */
+}
+
+/* Position the left and right buttons */
+.carousel-button.left {
+  left: 20px;  /* 20px from the left side */
+}
+
+.carousel-button.right {
+  right: 20px;  /* 20px from the right side */
+}
+
+/* Styling for the image container */
 .scrollable-gallery {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 20px;
-    padding: 20px;
-    background-color: #f0f0f0;
-  }
-  
-  .scrollable-gallery::-webkit-scrollbar {
-    display: none; /* Hide scrollbar */
-  }
-  
-  .image-container {
-    flex: 0 0 auto;
-    scroll-snap-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .image-container img {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .image-container.active {
-    transform: scale(1.2);
-    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
-  }
-  
-  .image-container:not(.active) {
-    transform: scale(0.8);
-  }
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 10px;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  width: 100%;  /* Display full width of the container */
+  justify-content: flex-start;  /* Align items to the start */
+  margin: 0 auto;  /* Center the gallery */
+}
+
+/* Individual image container */
+.image-container {
+  min-width: 20%;  /* 5 images visible at once, each taking 20% of the width */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  scroll-snap-align: center;  /* Align images at the center */
+  opacity: 0.7;
+  display: flex;
+  justify-content: center;
+}
+
+/* Image styling */
+.image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: cover;  /* Ensure the images cover the area without distortion */
+}
+
+/* Active image styling */
+.image-container.active {
+  transform: scale(1.2);  /* Zoom in the active image */
+  opacity: 1;  /* Make the active image fully visible */
+  z-index: 1;  /* Ensure active image is above others */
+}

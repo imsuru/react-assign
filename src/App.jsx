@@ -33,7 +33,7 @@ const App = () => {
 
       {/* Header */}
       <Header />
-<Test></Test>
+
       <main className="bg-black text-white">
         {/* Image and Text Section */}
         <ImageTextSection />
@@ -41,7 +41,8 @@ const App = () => {
 
 
         {/* Image Carousel Section */}
-        <Carousel items={imageCarouselItems} gapBetweenItems={20} />
+        <Test></Test>
+        {/* <Carousel items={imageCarouselItems} gapBetweenItems={20} /> */}
 
         {/* Video Carousel Section */}
         <VideoCarousel videos={videoCarouselItems} />
